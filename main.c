@@ -13,7 +13,7 @@
 */
 int main()
 {
-	getInput(); //get the users input 
-
+	int n = getInput(); //get the users input 
+	getPrimes(n); //get the primes 
 	return 0;  
 }
