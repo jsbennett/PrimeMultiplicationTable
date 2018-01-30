@@ -13,7 +13,7 @@
 #include <math.h>
 
 /*
-* method to get and verify user input
+* method to get and verify user
 */ 
 int getInput()
 {
@@ -21,14 +21,22 @@ int getInput()
 	do
 	{
 		n = 0;
-		printf("Please enter a whole positive integer starting from 1:\n"); //ask for input 
+		printf("Please enter a whole positive integer starting from 2:\n"); //ask for input 
 		
 		scanf("%d", &n);  //get user input
+
 		
-	} while (n < 1); //keep asking the user until the input is valid 
+	} while (n < 2); //keep asking the user until the input is valid 
 
 	return ceil(n); //return the round up number if the user puts in not a whole number 
 }
 
+/*
+*method to calculate the primes 
+*/
+void getPrimes(int n)
+{
+
+}
 
 #endif
