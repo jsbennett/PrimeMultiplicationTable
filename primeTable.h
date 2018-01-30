@@ -37,9 +37,11 @@ int getInput()
 */
 void getPrimes(int n)
 {
-	int primes[n+1]; //create an array of the size of the number from the user input
+	int max = 10000000; 
+	int stop = n; 
+	int primes[max+1]; //create an array of the size of the number from the user input
 	//for loop used to set all the values to 'true' aka the value 1 
-	for(int i = 0; i < n; i++)
+	for(int i = 0; i < max+1; i++)
 	{
 		primes[i] = 1; 
 	}
@@ -50,23 +52,28 @@ void getPrimes(int n)
 		primes[i] = 0; 
 	}
 
-	for(int i = 2; i <=n+1; i++) //starting from 2 since 2 is a prime number 
+	for(int i = 2; i < n; i++) //starting from 2 since 2 is a prime number 
 	{
 		if(primes[i] == 1) //if the prime number is currently true then 
 		{
-			for(int j = pow(i,2); j <=n+1; j = j+i) //set j to value of i to the power of 2. This will calculate the j which is the next number which is not prime
+			for(int j = pow(i,2); j <=max+1; j = j+i) //set j to value of i to the power of 2. This will calculate the j which is the next number which is not prime
 			{
-				primes[j] = 0; //set the prime to be false aka 0
+				primes[j] = 0; //set the prime to be false aka
 			} 
 		}
 	}
 
 
-	for(int i = 0; i< n+1; i++)
+	for(int i = 0; i< max+1; i++)
 	{
 		if(primes[i]==1)
 		{
+			if(stop == 0)
+			{
+				break; 
+			}
 			printf("%d\n",i); 
+			stop--; 
 		}
 	}
 
