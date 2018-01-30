@@ -9,8 +9,9 @@
 #define PRIME_TABLE
 
 #include <stdio.h>
-#include <ctype.h>
+#include <iostream>
 #include <math.h>
+using namespace std;
 
 /*
 * method to get and verify user
@@ -21,12 +22,12 @@ int getInput()
 	do
 	{
 		n = 0;
-		printf("Please enter a whole positive integer starting from 2:\n"); //ask for input 
+		cout << "Please enter a whole positive integer starting from 2:\n"; //ask for input 
 		
-		scanf("%d", &n);  //get user input
+		cin>>n;  //get user input
 
 		
-	} while (n < 2); //keep asking the user until the input is valid 
+	} while (n < 2 && cin.fail()); //keep asking the user until the input is valid 
 
 	return ceil(n); //return the round up number if the user puts in not a whole number 
 }
@@ -36,11 +37,32 @@ int getInput()
 */
 void getPrimes(int n)
 {
-	int primes[n]; //create an array of the size of the number from the user input
+	int primes[n+1]; //create an array of the size of the number from the user input
 	//for loop used to set all the values to 'true' aka the value 1 
-	for(int i = 0; i< n; i++)
+	for(int i = 0; i < n; i++)
 	{
 		primes[i] = 1; 
+	}
+
+	//set the first two values to 'false' aka 0 since they are not primes
+	for(int i = 0; i < 2; i++)
+	{
+		primes[i] = 0; 
+	}
+
+	for(int i = 2; i <=n+1; i++) //starting from 2 since 2 is a prime number 
+	{
+		if(primes[i] == 1) //if the prime number is currently true then 
+		{
+			for(int j = pow(i,2); j <=n+1; j = j+i) //set j to be i to the power of 2 since 
+			{
+				primes[j] = 0; 
+			} 
+		}
+	}
+	for(int i = 0; i< n+1; i++)
+	{
+		printf("%d\n",primes[i]); 
 	}
 
 }
