@@ -54,15 +54,20 @@ void getPrimes(int n)
 	{
 		if(primes[i] == 1) //if the prime number is currently true then 
 		{
-			for(int j = pow(i,2); j <=n+1; j = j+i) //set j to be i to the power of 2 since 
+			for(int j = pow(i,2); j <=n+1; j = j+i) //set j to value of i to the power of 2. This will calculate the j which is the next number which is not prime
 			{
-				primes[j] = 0; 
+				primes[j] = 0; //set the prime to be false aka 0
 			} 
 		}
 	}
+
+
 	for(int i = 0; i< n+1; i++)
 	{
-		printf("%d\n",primes[i]); 
+		if(primes[i]==1)
+		{
+			printf("%d\n",i); 
+		}
 	}
 
 }
