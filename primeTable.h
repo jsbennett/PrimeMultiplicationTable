@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <math.h>
+#include <vector>
 using namespace std;
 
 /*
@@ -35,11 +36,13 @@ int getInput()
 /*
 *method to calculate the primes using the sieve of Erathosthenes (https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes) 
 */
-void getPrimes(int n)
+vector<int> getPrimes(int n)
 {
-	int max = 10000000; 
+	vector<int> finalPrimes;
+	int max = 1000000; 
+	int count =0; 
 	int stop = n; 
-	int primes[max+1]; //create an array of the size of the number from the user input
+	int primes[max]; //create an array of the size of the number from the user input
 	//for loop used to set all the values to 'true' aka the value 1 
 	for(int i = 0; i < max+1; i++)
 	{
@@ -74,9 +77,14 @@ void getPrimes(int n)
 			}
 			printf("%d\n",i); 
 			stop--; 
+			finalPrimes.push_back(i); 
+			count++;
+			printf("%d\n",count); 
 		}
-	}
-
+	}	
+		return finalPrimes; 
 }
+
+
 
 #endif
