@@ -75,16 +75,44 @@ vector<int> getPrimes(int n)
 			{
 				break; 
 			}
-			printf("%d\n",i); 
+			//printf("%d\n",i); 
 			stop--; 
 			finalPrimes.push_back(i); 
 			count++;
-			printf("%d\n",count); 
+			//printf("%d\n",count); 
 		}
 	}	
 		return finalPrimes; 
 }
 
+void printTable(vector<int> primes)
+{
+	cout << "* "<< '|'; 
+	for(int i = 0; i < primes.size(); i++) 
+	{
+		cout << ' ' << primes[i];
 
+	}
+	cout << endl; 
+
+	for (int i = 0; i < primes.size(); i++)
+	{
+		cout << " - ";  
+	}
+
+	long x; 
+	cout << endl; 
+	for(int i = 0; i < primes.size(); i++) 
+	{
+		cout << primes[i] << '|' << ' ';
+		for(int j = 0; j < primes.size(); j++)
+		{
+			x = primes[i]*primes[j]; 
+			cout << x << ' '; 
+			x = 0; 
+		} 
+		cout << endl; 
+	}
+}
 
 #endif
