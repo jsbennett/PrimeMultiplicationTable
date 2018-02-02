@@ -21,16 +21,18 @@ using namespace std;
 */ 
 int getInput()
 {
+	cout << "Welcome to the prime multiplication table!"; 
 	int n; //create a variable to store user input 
 	do
 	{
 		n = 0;
+		
 		cout << "Please enter a whole positive integer starting from 2:\n"; //ask for input 
 		
 		cin>>n;  //get user input
 
 		
-	} while (n < 2 && cin.fail()); //keep asking the user until the input is valid 
+	} while (n < 2); //keep asking the user until the input is valid 
 
 	return ceil(n); //return the round up number if the user puts in not a whole number 
 }
@@ -113,7 +115,7 @@ void printTable(vector<int> primes, int n)
 	for (int i = 0; i < primes.size() + 1; i++)
 	{
 		cout << " ------\t";  
-		file << " -\t"; 
+		file << " ------\t"; 
 	}
 
 	long x; //used to store the result of the multiplication 
