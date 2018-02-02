@@ -12,10 +12,12 @@
 #include <iostream>
 #include <math.h>
 #include <vector>
+#include <iostream>
+#include <fstream>
 using namespace std;
 
 /*
-* method to get and verify user
+* method to get and verify user input
 */ 
 int getInput()
 {
@@ -39,10 +41,10 @@ int getInput()
 vector<int> getPrimes(int n)
 {
 	vector<int> finalPrimes;
-	int max = 1000000; 
-	int count =0; 
+	int max = 1000000;  
 	int stop = n; 
-	int primes[max]; //create an array of the size of the number from the user input
+	int primes[max]; //create a vector of the size of the number from the user input
+	
 	//for loop used to set all the values to 'true' aka the value 1 
 	for(int i = 0; i < max+1; i++)
 	{
@@ -61,57 +63,83 @@ vector<int> getPrimes(int n)
 		{
 			for(int j = pow(i,2); j <=max+1; j = j+i) //set j to value of i to the power of 2. This will calculate the j which is the next number which is not prime
 			{
-				primes[j] = 0; //set the prime to be false aka
+				primes[j] = 0; //set the prime to be false aka 0 
 			} 
 		}
 	}
 
-
+	//this is used to get n primes 
 	for(int i = 0; i< max+1; i++)
 	{
 		if(primes[i]==1)
 		{
+
+			//if we have reached the number of primes required then stop getting primes
 			if(stop == 0)
 			{
 				break; 
 			}
-			//printf("%d\n",i); 
+			//add the primes to the vector 
 			stop--; 
 			finalPrimes.push_back(i); 
-			count++;
-			//printf("%d\n",count); 
 		}
 	}	
 		return finalPrimes; 
 }
 
-void printTable(vector<int> primes)
+/*
+* Method to display the table to the user and also save it in a txt file. 
+*/
+void printTable(vector<int> primes, int n)
 {
-	cout << "* "<< '|'; 
+	ofstream file; //open the ofstream 
+	file.open(to_string(n)+"PrimeTable.txt"); //name the file to be the number the user input 
+
+	cout << "*"<< '|'; 
+	file << "*|"; 
+
+	//this is to display the top line of the table
 	for(int i = 0; i < primes.size(); i++) 
 	{
-		cout << ' ' << primes[i];
+		cout << '\t' << primes[i];
+		file << '\t' << primes[i]; 
 
 	}
-	cout << endl; 
 
-	for (int i = 0; i < primes.size(); i++)
+	cout << endl; 
+	file << endl; 
+
+	//this is to display the dividing line between the multiplication and the top line of numbers 
+	for (int i = 0; i < primes.size() + 1; i++)
 	{
-		cout << " - ";  
+		cout << " ------\t";  
+		file << " -\t"; 
 	}
 
-	long x; 
+	long x; //used to store the result of the multiplication 
+	
 	cout << endl; 
+	file << endl; 
+	
+	//this is used to display the primes down the side of the table 
 	for(int i = 0; i < primes.size(); i++) 
 	{
-		cout << primes[i] << '|' << ' ';
+		cout << primes[i] << '|' << '\t'; //print out the side primes 
+		file << primes[i] << "|\t"; 
+
+		//this is to do the multiplication calculation
 		for(int j = 0; j < primes.size(); j++)
 		{
-			x = primes[i]*primes[j]; 
-			cout << x << ' '; 
-			x = 0; 
+			x = primes[i]*primes[j]; //multiply the values from loop i and loop j aka the side value and the top value 
+			
+			cout << x << '\t';
+			file << x << '\t';  
+			
+			x = 0; //reset x back to  
 		} 
+
 		cout << endl; 
+		file << endl; 
 	}
 }
 

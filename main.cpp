@@ -16,9 +16,6 @@ int main()
 	int n = getInput(); //get the users input 
 	vector<int> primes;
 	primes = getPrimes(n); //get the primes
-	for(int i = 0; i < primes.size(); i++) 
-	{
-		cout << primes[i] << ' '; 
-	}
+	printTable(primes, n); 
 	return 0;  
 }
